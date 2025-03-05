@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[HomeController::class,'login'])->name('login');
-
+Route::get('/index',[HomeController::class,'index'])->name('index');
+Route::get('/tables',[HomeController::class,'tables'])->name('tables');
