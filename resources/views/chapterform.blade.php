@@ -9,53 +9,9 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <div id="content">
-
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </form>
-
-                    <!-- Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for...">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                        </li>
-
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <!-- Topbar Start -->
+                @include('layouts.topbar');
+                <!-- Topbar End -->
 
                 <div class="container-fluid">
                     <h1 class="h3 mb-2 text-gray-800 d-flex justify-content-between align-items-center">
@@ -64,46 +20,48 @@
                             data-target="#exampleModal">+ Add New Record</button>
                     </h1>
 
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
 
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add New Chapters</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Add New Chapters</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
 
-            <div class="modal-body">
-                <form id="SubmitForm">
-                    @csrf
-                    <input type="hidden" id="id" name="id">
+                                <div class="modal-body">
+                                    <form id="SubmitForm">
+                                        @csrf
+                                        <input type="hidden" id="id" name="id">
 
-                    <div class="mb-3">
-                        <select name="regionname" id="regionname" class="form-control">
-                            <option value="">Select Region</option>
-                            @foreach ($regions as $region)
-                                <option value="{{ $region->id }}">{{ $region->regionname }}</option>
-                            @endforeach
-                        </select>
+                                        <div class="mb-3">
+                                            <select name="regionname" id="regionname" class="form-control">
+                                                <option value="">Select Region</option>
+                                                @foreach ($regions as $region)
+                                                    <option value="{{ $region->id }}">{{ $region->regionname }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="chaptername" class="col-form-label">Chapter Name:</label>
+                                            <input type="text" class="form-control" id="chaptername" name="chaptername">
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                i
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="mb-3">
-                        <label for="chaptername" class="col-form-label">Chapter Name:</label>
-                        <input type="text" class="form-control" id="chaptername" name="chaptername">
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div>
 
 
                     <div class="card shadow mb-4">
@@ -149,10 +107,9 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <!-- Logout modal unchanged -->
-    </div>
+    <!-- Logout Modal-->
+    @include('partials/logout')
+
 
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -193,6 +150,8 @@
             });
 
             function fetchrecords() {
+                $('#datatable tbody').html('<tr><td colspan="6" class="text-center">Loading data...</td></tr>');
+
                 $.ajax({
                     url: 'chapterget',
                     type: 'GET',
@@ -231,38 +190,26 @@
                 });
             });
 
-            // $('#searchForm').on('submit', function (e) {
-            //     e.preventDefault();
-            //     let searchVal = $('#search').val();
-            //     $.ajax({
-            //         url: 'searchoperation',
-            //         type: "GET",
-            //         data: { search: searchVal },
-            //         success: function (response) {
-            //             let rows = '';
-            //             if (response.length > 0) {
-            //                 $.each(response, function (index, record) {
-            //                     rows += `<tr>
-            //                                 <td>${record.id}</td>
-            //                                 <td>${record.regionname}</td>
-            //                                 <td>${record.chaptername}</td>
-            //                                 <td>
-            //                                     <button class="btn btn-danger deleteBtn" data-id="${record.id}">Delete</button>
-            //                                 </td>
-            //                              </tr>`;
-            //                 });
-            //             } else {
-            //                 rows = '<tr><td colspan="4" class="text-center">No records found</td></tr>';
-            //             }
-            //             $('#datatable tbody').html(rows);
-            //         },
-            //         error: function (e) {
-            //             console.log(e.responseText);
-            //         }
-            //     });
-            // });
-      
+            $('#searchForm').on('submit', function (e) {
+                e.preventDefault();
+                var searchVal = $('#search').val();
+                $.ajax({
+                    url: 'chaptersearchoperation',
+                    type: "GET",
+                    data: { search: searchVal },
+                    success: function (response) {
+                        var tr = response.length ? response.map(data =>
+                            `<tr><td>${data.id}</td><td>${data.chaptername}</td><td>${data.regionname}</td><td>${data.chaptername}</td><td><button class="btn btn-danger deleteBtn" data-id='${data.id}'>Delete</button></td>
+</tr>`
+                        ).join('') : '<tr><td colspan="4" class="text-center">No records found</td></tr>';
+                        $('#datatable tbody').html(tr);
+                    }
+                });
+            });
+
+
         });
     </script>
 </body>
+
 </html>

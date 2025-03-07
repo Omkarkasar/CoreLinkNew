@@ -36,6 +36,14 @@ class MainController extends Controller
         return response()->json(['success' => 'CST Member Deleted Successfully']);
 
     }
+    public function ourcstsearchoperation(Request $request)
+    {
+        $data = $request->input('search');
+
+        $records = Ourcst::where('ourcstname', 'like', '%' . $data . '%')->get();
+
+        return response()->json($records);
+    }
     //Region
     public function regionstore(Request $request)
     {
@@ -56,6 +64,14 @@ class MainController extends Controller
         $data->delete();
         return response()->json(['success' => 'Region Deleted Successfully']);
 
+    }
+    public function regionsearchoperation(Request $request)
+    {
+        $data = $request->input('search');
+
+        $records = Region::where('regionname', 'like', '%' . $data . '%')->get();
+
+        return response()->json($records);
     }
     //Chapter
     public function chapterstore(Request $request)
@@ -79,6 +95,14 @@ class MainController extends Controller
         $data->delete();
         return response()->json(['success' => 'Chapter Deleted Successfully']);
     }
+    public function chaptersearchoperation(Request $request)
+    {
+        $data = $request->input('search');
+
+        $records = Chapter::where('chaptername', 'like', '%' . $data . '%')->get();
+
+        return response()->json($records);
+    }
 
     //Category
     public function categorystore(Request $request)
@@ -100,6 +124,15 @@ class MainController extends Controller
         $data = Category::findOrFail($id);
         $data->delete();
         return response()->json(['success' => 'Category Deleted Successfully']);
+    }
+
+    public function categorysearchoperation(Request $request)
+    {
+        $data = $request->input('search');
+
+        $records = Category::where('categoryname', 'like', '%' . $data . '%')->get();
+
+        return response()->json($records);
     }
     //Memmbers
     public function memberstore(Request $request)
@@ -127,5 +160,13 @@ class MainController extends Controller
         $data = Member::findOrFail($id);
         $data->delete();
         return response()->json(['success' => 'Member Deleted Successfully']);
+    }
+    public function membersearchoperation(Request $request)
+    {
+        $data = $request->input('search');
+
+        $records = Member::where('membername', 'like', '%' . $data . '%')->get();
+
+        return response()->json($records);
     }
 }

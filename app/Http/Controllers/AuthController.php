@@ -11,25 +11,37 @@ class AuthController extends Controller
     {
         return view('login');
     }
+
     public function loginuser(Request $request)
     {
-        $user = User::where('email', $request->input('email'))->where('password', $request->input('password'))->first();
-        session()->put('id', $user->id);
-        session()->put('type', $user->type);
-        if ($user->type == 'admin') {
-            return redirect()->route('index');
+        $user = User::where('email', $request->input('email'))
+            ->where('password', $request->input('password'))
+            ->first();
+
+        if ($user) {
+            session()->put('id', $user->id);
+            session()->put('type', $user->type);
+
+            if ($user->type == 'admin') {
+                // return redirect()->route('index');
+                return redirect('/ourcstform');  // Direct URL
+
+            } else {
+                return redirect('/');
+            }
         } else {
-            return redirect('/');
+            return redirect('/')->with('error', 'Invalid credentials');
         }
     }
+
     public function logout()
     {
-        session()->forget('id');
-        session()->forget('type');
+        session()->forget(['id', 'type']);
         return redirect('/');
     }
-    // public function dashboard()
-    // {
-    //     return view('dashboard');
-    // }
+
+    public function dashboard()
+    {
+        return view('dashboard');
+    }
 }
