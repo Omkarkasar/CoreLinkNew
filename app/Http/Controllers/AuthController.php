@@ -26,7 +26,8 @@ class AuthController extends Controller
                 // return redirect()->route('index');
                 return redirect('/ourcstform');  // Direct URL
 
-            } else {
+            } 
+            else {
                 return redirect('/');
             }
         } else {

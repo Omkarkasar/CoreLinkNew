@@ -39,7 +39,14 @@
                                         <input type="hidden" id="id" name="id">
 
                                         <label for="designation" class="col-form-label">Designation :</label>
-                                        <input type="text" class="form-control" id="designation" name="designation">
+                                        <select class="form-control" id="designation" name="designation">
+                                            <option value="">Select Designation</option>
+                                            <option value="RegionHead">RegionHead</option>
+                                            <option value="Dy. RegionHead">Dy. RegionHead</option>
+                                            <option value="Chairperson">Chairperson</option>
+                                            <option value="Secretory">Secretory</option>
+                                            <option value="Tresurer">Tresurer</option>
+                                        </select>
 
                                         <label for="ourcstname" class="col-form-label">Name:</label>
                                         <input type="text" class="form-control" id="ourcstname" name="ourcstname">
@@ -51,7 +58,8 @@
                                             <select name="region" id="region" class="form-control">
                                                 <option value="">Select Region</option>
                                                 @foreach ($regions as $region)
-                                                    <option value="{{ $region->id }}">{{ $region->regionname }}</option>
+                                                    <option value="{{ $region->regionname }}">{{ $region->regionname }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -60,12 +68,14 @@
                                             <select name="chapter" id="chapter" class="form-control">
                                                 <option value="">Select Chapter</option>
                                                 @foreach ($chapters as $chapter)
-                                                    <option value="{{ $chapter->id }}">{{ $chapter->chaptername }}</option>
+                                                    <option value="{{ $chapter->chaptername }}">{{ $chapter->chaptername }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </form>
                                 </div>
+
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -88,10 +98,11 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Region Name</th>
-                                            <th>Chapter Name</th>
-                                            <th>Region Name</th>
-                                            <th>Chapter Name</th>
+                                            <th>Designation</th>
+                                            <th>Name</th>
+                                            <th>Mobile</th>
+                                            <th>Region</th>
+                                            <th>Chapter</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -175,6 +186,7 @@
                         let rows = '';
                         $.each(response, function (index, record) {
                             rows += `<tr>
+                                                                    <td>${record.id}</td>
                                         <td>${record.designation}</td>
                                         <td>${record.ourcstname}</td>
                                         <td>${record.mobile}</td>

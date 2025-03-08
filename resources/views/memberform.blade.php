@@ -67,7 +67,7 @@
                                                 <!-- Added form-control -->
                                                 <option value="">Select Option</option>
                                                 @foreach ($regions as $region)
-                                                    <option value="{{ $region->id }}">{{ $region->regionname }}</option>
+                                                    <option value="{{ $region->regionname }}">{{ $region->regionname }}</option>
                                                 @endforeach
                                             </select>
 
@@ -75,7 +75,7 @@
                                             <select id="chaptername" name="chaptername" class="form-control">
                                                 <option value="">Select Option</option>
                                                 @foreach ($chapters as $chapter)
-                                                    <option value="{{ $chapter->id }}">{{ $chapter->chaptername }}</option>
+                                                    <option value="{{ $chapter->chaptername }}">{{ $chapter->chaptername }}</option>
                                                 @endforeach
                                             </select>
 
@@ -83,7 +83,7 @@
                                             <select id="categoryname" name="categoryname" class="form-control">
                                                 <option value="">Select Option</option>
                                                 @foreach ($categorys as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->categoryname }}
+                                                    <option value="{{ $category->categoryname }}">{{ $category->categoryname }}
                                                     </option>
                                                 @endforeach
                                             </select>
